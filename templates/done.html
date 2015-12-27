@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+  
+ <body>
+
+  <div class="body"></div>
+		<br>
+		  <form class="login" action="/accounts/loggedin" >
+			<input type="submit" value="Home" />
+		  </form>	
+		<br />
+		<form class="login1" action="/accounts/logout/" method="post">{% csrf_token %}
+			    <input type="submit" value="Logout" />
+    
+		</form>
+		{% if flag %}
+    		<form class="login2" action="" method="">
+			    <h1> Database Converted!!! </h1>
+    
+		</form>
+ 	 	{% endif %}
+	
+  <script src="{% static "js/jquery.js" %}"></script>
+
+</body>
+
+{% endblock %}

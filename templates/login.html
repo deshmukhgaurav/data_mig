@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+  <body>
+
+  <div class="body"></div>
+		<div class="grad"></div>
+		<div class="header">
+			<div>Login</div>
+		</div>
+		<br>
+		<form class="login" action="/accounts/auth/" method="post">{% csrf_token %}
+			    <input type="text" placeholder="User name" name="username" value="" id="username">
+			    <input type="password" placeholder="Password" name="password" value="" id="password">
+
+			    <input type="submit" value="Login" />
+    
+		</form>
+		<br />
+		<form class="login1" action="/accounts/register/" method="post">{% csrf_token %}
+			    <input type="submit" value="Register" />
+    
+		</form>
+		{% if form.errors %}
+    		<p class="error">Sorry, that's not a valid username or password</p>
+ 	 	{% endif %}
+	
+  <script src="{% static "assets/js/jquery.js" %}"></script>
+
+</body>
+
+
+{% endblock %}

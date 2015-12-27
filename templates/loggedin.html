@@ -1,0 +1,263 @@
+{% load static %}
+<!DOCTYPE html><html class=''>
+<head><meta charset='UTF-8'><meta name="robots" content="noindex">
+
+<link rel='stylesheet prefetch' href='http://yui.yahooapis.com/pure/0.4.2/pure-min.css'>
+<style class="cp-pen-styles">@import url(http://fonts.googleapis.com/css?family=Covered+By+Your+Grace);
+@import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  padding: 5em 1em;
+  background-image: url(http://lh5.googleusercontent.com/-WS8PXb1VNBM/UyoVSVKkppI/AAAAAAAAA2Q/nVNI3smYtcI/w540-h300-no/kids.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+h1 {
+  text-align: center;
+  font-size: 275%;
+  font-family: 'Covered By Your Grace', cursive;
+  font-weight: 300;
+  margin-top: -1em;
+  text-shadow: 0 2px 1px white;
+}
+
+#box {
+  margin: auto;
+  width: 50em;
+  height: 100%;
+  white-space: nowrap;
+}
+@media all and (max-width: 52em) {
+  #box {
+    width: 100%;
+  }
+}
+
+#center {
+  vertical-align: middle;
+  display: inline-block;
+  white-space: normal;
+}
+
+#box:after {
+  content: "";
+  width: 1px;
+  height: 100%;
+  vertical-align: middle;
+  display: inline-block;
+  margin-right: -10px;
+}
+
+table {
+  background-color: white;
+  padding: 1em;
+}
+table, table * {
+  border-color: #27ae60 !important;
+}
+table th {
+  text-transform: uppercase;
+  font-weight: 300;
+  text-align: center;
+  color: white;
+  background-color: #27ae60;
+  position: relative;
+}
+table th:after {
+  content: "";
+  display: block;
+  height: 5px;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: #16a085;
+  position: absolute;
+}
+
+#credits {
+  text-align: right;
+  color: white;
+}
+#credits a {
+  color: #16a085;
+  text-decoration: none;
+}
+#credits a:hover {
+  text-decoration: underline;
+}
+.login input[type=text]{
+	width: 250px;
+	height: 30px;
+	border: 1px solid rgba(255,255,255,0.6);
+	border-radius: 2px;
+	color: #000;
+	font-family: 'Exo', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 4px;
+}
+.login input[type=password]{
+	width: 250px;
+	height: 30px;
+	border: 1px solid rgba(255,255,255,0.6);
+	border-radius: 2px;
+	color: #000;
+	font-family: 'Exo', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 4px;
+}
+
+#button-blue{
+	font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+	float:left;
+	width: 100px;
+	border: #fbfbfb solid 2px;
+	cursor:pointer;
+	background-color: #3498db;
+	color:white;
+	font-size:12px;
+	padding-top:11px;
+	padding-bottom:11px;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+  margin-top:-2px;
+  font-weight:700;
+}
+
+#button-blue:hover{
+	background-color: rgba(0,0,0,0);
+	color: #0493bd;
+}
+
+#convert{
+	font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+	float:left;
+	width: 150px;
+	border: #fbfbfb solid 2px;
+	cursor:pointer;
+	background-color: #3498db;
+	color:white;
+	font-size:12px;
+	padding-top:11px;
+	padding-bottom:11px;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+  margin-top:-2px;
+  font-weight:700;
+}
+
+#convert:hover{
+	background-color: rgba(0,0,0,0);
+	color: #0493bd;
+}	
+.submit:hover {
+	color: #3498db;
+}
+	
+.ease {
+	width: 0px;
+	height: 18px;
+	background-color: #fbfbfb;
+	-webkit-transition: .3s ease;
+	-moz-transition: .3s ease;
+	-o-transition: .3s ease;
+	-ms-transition: .3s ease;
+	transition: .3s ease;
+}
+
+.submit:hover .ease{
+  width:100px;
+  height: 18px;
+  background-color:transparent;
+}
+</style></head><body>
+<form class="login1" action="/accounts/logout/" method="post">{% csrf_token %}
+			<div class="submit">
+        		<input type="submit" value="LOGOUT" id="button-blue"/>
+        		<div class="ease"></div>
+      		</div>
+</form>
+<div id="box">
+<main id="center">
+  <h1>Ready to migrate?</h1>
+   <form class="login" method="post">{% csrf_token %}
+			<input type="text" id="host" placeholder="Enter RDS address" name="host" value="" id="host">
+      <input type="text" id="username" placeholder="Enter Username" name="username" value="" id="username">
+			<input type="password" id="password" placeholder="Enter Password" name="password" value="" id="password"> <br /><br />
+			<input type="text" id="dbname" placeholder="Enter Database to be converted" name="dbname" value="" id="dbname">
+		<br /><br />
+		<div class="submit">
+	        <input type="submit" value="CONVERT ALL TABLES" id="convert"/>
+	        <div class="ease"></div>	
+		</div>
+	</form>
+  <br /><br/>
+  <div class="advanced">
+        <input type="submit" value="ADVANCED" id="convert"/>
+        <div class="ease"></div>  
+  </div>
+	<br /><br />
+  <br /><br/>
+  <div class="example">
+        <input type="submit" value="D" id="data"/>
+        <div class="ease"></div>  
+  </div>
+  <br /><br />
+	<div id="wait" style="display:none;background-color:white;width:69px;height:89px;border:1px solid black;position:absolute;top:50%;left:50%;padding:2px;"><img src='http://www.w3schools.com/jquery/demo_wait.gif' width="64" height="64" /><br>Loading..</div>
+  <div id="details" style="display:none;background-color:white;width:80%;height:80%;border:1px solid black;position:absolute;top:10%;left:10%;padding:2px;"></div>
+  <div id="advanced" style="overflow-y: auto;display:none;background-color:white;width:80%;height:80%;border:1px solid black;position:absolute;top:10%;left:10%;padding:2px;"></div>
+	<h1 style="color: red;" id="result"></h1>	
+  <table id="table" style="display:none;" class="pure-table pure-table-horizontal">
+    <thead>
+      <tr>
+        <th>      </th>
+        <th>Details</th>
+        <th>Table Name</th>
+        <th>No of rows migrated</th>
+      </tr>
+    </thead>
+    <tbody id="table_body">
+      <!-- <tr>
+        <td>Rock Climbing</td>
+        <td>Usually alone, but sometimes with friends.</td>
+        <td>Monday, Wednesday and Friday at 4:00 to 5:00pm</td>
+        <td>Pacific Edge Rock Climbing Gym</td>
+        <td>Climbing helps with cardiovascular endurance, muscular strength and endurance, flexibility, and improving or maintaining bone strength</td>
+      </tr>
+      <tr>
+        <td>Walking my dog</td>
+        <td>Just me and my dog</td>
+        <td>Saturday and Sunday, whenever I am free</td>
+        <td>On West Cliff</td>
+        <td>Walking improves cardiovascular endurance and bone strength</td>
+      </tr>
+      <tr>
+        <td>Working out</td>
+        <td>By myself</td>
+        <td>Monday, Wednesday and Friday at 5:00 to 5:30pm</td>
+        <td>At Pacific Edge Rock climbing gym</td>
+        <td>Working out helps with muscular strength and endurance</td>
+      </tr> -->
+    </tbody>
+  </table>
+</main>
+</div>
+<script src="{% static "assets/js/jquery.js" %}"></script>
+</body></html>

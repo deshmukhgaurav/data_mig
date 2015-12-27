@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<body>
+
+  <div class="body"></div>
+		<div class="grad"></div>
+		<div class="header">
+			<div>Registered Successfully!</div>
+		</div>
+		<br>
+		<form class="login1" action="/accounts/login/" method="post">{% csrf_token %}
+			    <input type="submit" value="Login now" />
+    
+		</form>
+		<br />
+	
+  <script src="{% static "assets/js/jquery.js" %}"></script>
+
+</body>
+{% endblock %}
