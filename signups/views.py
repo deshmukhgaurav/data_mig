@@ -18,6 +18,8 @@ from django.core.urlresolvers import reverse
 from django.utils import simplejson as json
 
 # Create your views here.
+# Basic User management operations
+
 def login(request):
     c = {}
     c.update(csrf(request))    
@@ -64,13 +66,12 @@ def register_user(request):
     
     return render_to_response('register.html', args)
 
-
-
 def register_success(request):
     c = {}
     c.update(csrf(request))
     return render_to_response('register_success.html',c)
 
+# Extract data from SQL database and transform it into the target No-SQL (MongoDB)
 def convert(request):
     # Mongo datbase connection
     client = MongoClient('localhost', 27017)
@@ -86,9 +87,9 @@ def convert(request):
     dtype = []
     # Open database connection
     try:
-    	db = MySQLdb.connect("localhost","root","root","test1")
-    	mdb = client['test1']
-    	# db = MySQLdb.connect("localhost",username,password,dbname )
+        # db = MySQLdb.connect("localhost","root","root","test1")
+    	mdb = client[dbname]
+    	db = MySQLdb.connect("localhost",username,password,dbname )
 	    # prepare a cursor object using cursor() method
 	cursor = MySQLdb.cursors.SSCursor(db)
 	#cursor = db.cursor()
@@ -165,14 +166,15 @@ def convert(request):
     except Exception, e:
     	passer1['flag']='database fault'
     	return HttpResponse(json.dumps(passer1), mimetype='application/javascript') 
-    
+
+# Retrieve Tables from the SQL database
 def get_tables(request):
 	dbname = request.POST['d_name']
 	username = request.POST['u_name']
 	password = request.POST['password']
 	result_table = {}
 	try:
-		db = MySQLdb.connect("localhost","root","root","test1" )
+		db = MySQLdb.connect("localhost",username,password,dbname )
 		cursor = MySQLdb.cursors.SSCursor(db)
 		sql = "show tables"
 		cursor.execute(sql)
@@ -185,6 +187,7 @@ def get_tables(request):
 		print e
 		return HttpResponse(json.dumps(result_table), mimetype='application/javascript')
 
+# Get the schema of tables selected by user
 def get_schema(request):
 	tables = []
 	dbname = request.POST['d_name']
@@ -196,7 +199,7 @@ def get_schema(request):
 	data = []
 	# Open database connection
 	try:
-		db = MySQLdb.connect("localhost","root","root","test1")
+		db = MySQLdb.connect("localhost",username,password,dbname)
 		# db = MySQLdb.connect("localhost",username,password,dbname )
 		j = 0
 		for row in tables:
@@ -225,6 +228,7 @@ def get_schema(request):
 		print e
 		return HttpResponse(json.dumps(result_schema), mimetype='application/javascript')
 
+# Get certain rows from the SQL database by using the query created by user
 def get_data(request):
 	dbname = request.POST['d_name']
 	username = request.POST['u_name']
@@ -236,8 +240,8 @@ def get_data(request):
 	data = []
 	# Open database connection
 	try:
-		db = MySQLdb.connect("localhost","root","root","test1")
-		# db = MySQLdb.connect("localhost",username,password,dbname )
+#		db = MySQLdb.connect("localhost","root","root","test1")
+		 db = MySQLdb.connect("localhost",username,password,dbname )
 		j = 0
 		# prepare a cursor object using cursor() method
 		cursor = MySQLdb.cursors.SSCursor(db)
@@ -279,6 +283,7 @@ def get_data(request):
 		print e
 		return HttpResponse(json.dumps(result_data), mimetype='application/javascript')
 
+# Convert just the tables selected by user
 def tconvert(request):
     # Mongo datbase connection
     client = MongoClient('localhost', 27017)
@@ -296,9 +301,9 @@ def tconvert(request):
     dtype = []
     # Open database connection
     try:
-    	db = MySQLdb.connect("localhost","root","root","test1")
-    	mdb = client['test1']
-    	# db = MySQLdb.connect("localhost",username,password,dbname )
+#    	db = MySQLdb.connect("localhost","root","root","test1")
+    	mdb = client[dbname]
+    	 db = MySQLdb.connect("localhost",username,password,dbname )
     	cursor = MySQLdb.cursors.SSCursor(db)
     	# sql = "SELECT * FROM {}".format(ptable)
     	print sql
@@ -363,6 +368,7 @@ def tconvert(request):
     	print e
     	return HttpResponse(json.dumps(passer1), mimetype='application/javascript') 
 
+# Provide a ZIP file to user of the data transformed into MongoDB
 def send_zipfile(request):
     dbname = request.POST['d_name']
     dbname = 'test1'    
