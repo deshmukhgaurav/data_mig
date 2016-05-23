@@ -8,7 +8,7 @@ Installation Guide.
 
 The following files are core working files for the migration:
 
-1)  jquery.js - Which perform HTTP POST request to the Django server to perform a particular operation.
+1)  jquery.js - Which perform HTTP POST request to the Django server to perform a particular operation. \n
 2)  urls.py - This file is used to map an url to one particular functionality of project. 
     For example : "convert/done" url is mapped to convert method present in signups/views folder.
     You can use this file to refer which url is mapped to which method.
