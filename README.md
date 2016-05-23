@@ -15,5 +15,6 @@ The following files are core working files for the migration:
     You can use this file to refer which url is mapped to which method.
     
 3)  template - folder has all the HTML files needed (self-explanatory).
+
 4)  # MOST IMPORTANT FILE:
     views.py -  It holds all the operations (Performing ETL on SQL database to No-SQL database, view SQL data, download transformed database).
