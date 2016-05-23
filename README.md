@@ -1,4 +1,4 @@
-I had executed this project on AWS EC2, using AmazonRDS instances as source database and saving new tranformed database into Amazon S3.
+This project was developed, designed and tested on AWS EC2, using AmazonRDS instances as source database and saving new tranformed database into Amazon S3.
 The user needed to have RDS instances address, username and password. Furthermore User need to provide the database name whose all tables or selected tables were needed to tranformed.
 Finally user was provided with a zip file containg the MongoDB database which can be easily imported back to their systems.
 
